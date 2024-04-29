@@ -1,19 +1,10 @@
-project: default
-source:
-  repoURL: 'https://github.com/jhonnygo/prueba-test-kc.git'
-  path: ./argo-rollouts
-  targetRevision: main
-destination:
-  server: 'https://kubernetes.default.svc'
-  namespace: argo-rollouts
-syncPolicy:
-  automated:
-    prune: true
-    selfHeal: true
-  syncOptions:
-    - CreateNamespace=true
-ignoreDifferences:
-  - group: apps
-    kind: Deployment
-    jsonPointers:
-      - /spec/replicas
+apiVersion: v2
+appVersion: 0.1.0
+description: A helm chart for argo-rollouts
+name: argo-rollouts
+type: application
+version: 0.1.0
+dependencies:
+  - name: argo-rollouts
+    version: 2.32.7
+    repository: https://argoproj.github.io/argo-helm
