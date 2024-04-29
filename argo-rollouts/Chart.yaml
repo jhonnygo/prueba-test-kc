@@ -1,0 +1,19 @@
+project: default
+source:
+  repoURL: 'https://github.com/jhonnygo/prueba-test-kc.git'
+  path: ./argo-rollouts
+  targetRevision: main
+destination:
+  server: 'https://kubernetes.default.svc'
+  namespace: argo-rollouts
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
+  syncOptions:
+    - CreateNamespace=true
+ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+      - /spec/replicas
